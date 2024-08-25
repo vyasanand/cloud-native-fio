@@ -9,7 +9,9 @@ To overcome this challange, `cloud-native-fio` was born which uses other open so
 
 # Deploy
 
-Follow the instructions listed [here](docs)
+Follow the instructions listed [here](docs/Usage/Run.md)
 
-# Usage
+# Build
+
+
 
