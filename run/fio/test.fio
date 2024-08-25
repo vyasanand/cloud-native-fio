@@ -1,0 +1,14 @@
+[global]
+ioengine=libaio
+invalidate=1
+ramp_time=5
+size=200M
+iodepth=1
+runtime=30
+time_based
+
+[test-job-randread]
+bs=4k
+stonewall
+directory=/data
+rw=randread
