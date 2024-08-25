@@ -9,9 +9,10 @@ To overcome this challange, `cloud-native-fio` was born which uses other open so
 
 # Deploy
 
-Follow the instructions listed [here](docs/Usage/Run.md)
+To deploy on `OpenShift` follow the instructions listed [here](docs/Usage/Run.md)
 
 # Build
 
+Follow the instructions listed [here](docs/Usage/Build.md)
 
 
