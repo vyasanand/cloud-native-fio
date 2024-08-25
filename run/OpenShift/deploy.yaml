@@ -57,6 +57,9 @@ spec:
         name: xpra
       - image: quay.io/anvyas/gfio:1.0
         name: gfio
+        volumeMounts:
+        - name: data
+          mountPath: /data
       - image: quay.io/anvyas/gfio-client:1.0
         name: gfio-client
         volumeMounts:
@@ -64,7 +67,7 @@ spec:
           mountPath: /fio-tests
         - name: data
           mountPath: /data
-    volumes:
+      volumes:
       - name: fio-tests
         configMap:
           name: testfio
