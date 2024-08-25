@@ -1,1 +1,66 @@
-TODO
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: cloud-native-fio
+  name: cloud-native-fio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-native-fio
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: cloud-native-fio
+    spec:
+      serviceAccountName: cloud-native-fio
+      automountServiceAccountToken: false
+      containers:
+      - image: quay.io/anvyas/xpra:1.0
+        name: xpra
+      - image: quay.io/anvyas/gfio:1.0
+        name: gfio
+      - image: quay.io/anvyas/gfio-client:1.0
+        name: gfio-client
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: cloud-native-fio-svc
+  name: cloud-native-fio-svc
+spec:
+  ports:
+  - name: 8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: cloud-native-fio
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: null
+  labels:
+    app: cloud-native-fio-svc
+  name: gfio
+spec:
+  port:
+    targetPort: 8080-8080
+  tls:
+    termination: edge
+  to:
+    kind: ""
+    name: cloud-native-fio-svc
+    weight: null
+status: {}
