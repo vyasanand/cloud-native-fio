@@ -7,7 +7,9 @@ IOPS and Throughput performance are key metrics on how your storage is going to 
 
 To overcome this challange, `cloud-native-fio` was born which uses other open source projects like `xpra` which allows your to run x11 programs over browser and `FIO` which is a already a popular project used for IOPS testing. 
 
-# Installation
+# Deploy
+
+Follow the instructions listed [here](docs)
 
 # Usage
 
