@@ -1,0 +1,14 @@
+FROM registry.access.redhat.com/ubi8/ubi@sha256:d5e2d1ddf34b573673581940f1341c7b3301ff8efde28f17100b31a3df7d94b6
+ENV DISPLAY=":80"
+
+RUN yum -y update && \
+    yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
+    yum -y install git gtk2-devel glib2-devel libaio-devel && \
+    yum -y groupinstall "Development Tools"
+
+RUN git clone https://github.com/axboe/fio.git && \
+    cd fio && ./configure --enable-gfio && make fio && make gfio && make install
+
+RUN cd .. && rm -rf fio && yum clean all && rm -rf /var/cache/dnf
+
+ENTRYPOINT ["fio", "--server"]
