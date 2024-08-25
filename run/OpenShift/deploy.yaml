@@ -1,3 +1,36 @@
+apiVersion: v1
+data:
+  test.fio: |
+    [global]
+    ioengine=libaio
+    invalidate=1
+    ramp_time=5
+    size=200M
+    iodepth=1
+    runtime=30
+    time_based
+
+    [test-job-randread]
+    bs=4k
+    stonewall
+    directory=/data
+    rw=randread
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: testfio
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cloud-native-fio-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -26,6 +59,18 @@ spec:
         name: gfio
       - image: quay.io/anvyas/gfio-client:1.0
         name: gfio-client
+        volumeMounts:
+        - name: fio-tests
+          mountPath: /fio-tests
+        - name: data
+          mountPath: /data
+    volumes:
+      - name: fio-tests
+        configMap:
+          name: testfio
+      - name: data
+        persistenVolumeClaim:
+          claimName: cloud-native-fio-pvc
 status: {}
 ---
 apiVersion: v1
