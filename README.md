@@ -7,6 +7,18 @@ IOPS and Throughput performance are key metrics on how your storage is going to 
 
 To overcome this challange, `cloud-native-fio` was born which uses other open source projects like [xpra](https://github.com/Xpra-org/xpra) which allows your to run x11 programs over browser and [fio](https://github.com/axboe/fio) which is a already a popular project used for IOPS testing. 
 
+# Demo
+
+* Deploy the application on OpenShift
+
+![Deploy the application on OpenShift](https://github.com/vyasanand/cloud-native-fio/blob/main/demo/xpra-demo-1.gif)
+
+The test fio job is deployed as a `configmap` in the previous step.
+
+* Run the I/O tests
+
+![Run the I/O tests](https://github.com/vyasanand/cloud-native-fio/blob/main/demo/xpra-demo-2.gif)
+
 # Deploy
 
 To deploy on `OpenShift` follow the instructions listed [here](docs/Usage/Run.md)
@@ -14,5 +26,6 @@ To deploy on `OpenShift` follow the instructions listed [here](docs/Usage/Run.md
 # Build
 
 Follow the instructions listed [here](docs/Usage/Build.md)
+
 
 
