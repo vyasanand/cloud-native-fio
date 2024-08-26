@@ -23,6 +23,8 @@ The test fio job is deployed as a `configmap` in the previous step.
 
 To deploy on `OpenShift` follow the instructions listed [here](docs/Usage/Run.md)
 
+To customize the fio jobs follow the instructions listed [here](docs/Usage/Run.md#customize-your-tests)
+
 # Build
 
 Follow the instructions listed [here](docs/Usage/Build.md)
