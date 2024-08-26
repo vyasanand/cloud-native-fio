@@ -25,3 +25,14 @@
 
   ```$ oc create -f cloud-native-fio/run/OpenShift/deploy.yaml```
 
+# Customize your tests
+
+If you use the default `deploy.yaml`, it creates a configmap `testfio` which is based on [sample test job](run/fio/test.fio)
+
+In a real use case, you may wish to customize the job based on your requirements. You can do this by either modifying the `configmap` in the `deploy.yaml` file or create an external job on `helper` or `jump` host and copy it using `oc` CLI.
+
+* Example:
+
+  ```$ oc cp <anothertestjob.fio> <your-pod-name>:/data -c gfio```
+
+  NOTE: `/data` is the default mountpoint in the [deploy.yaml](run/OpenShift/deploy.yaml) file which is mounted to both `gfio` and `gfio-client` containers.
