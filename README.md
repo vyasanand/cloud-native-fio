@@ -10,7 +10,7 @@ To overcome this challenge, `cloud-native-fio` was born which uses other open so
 # Cloud-native-fio overall flow
 
 
-![Cloud-native-fio overall flow](images/xpra-gfio-flow.png)
+![Cloud-native-fio overall flow](images/xpra-gfio-flow-1.png)
 
 # Demo
 
